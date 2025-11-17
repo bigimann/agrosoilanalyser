@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 
 const AdminDashboard = () => {
   const [farmers, setFarmers] = useState([]);
@@ -146,7 +152,7 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-green-700">
-              AgroSense Admin Dashboard
+              Admin Dashboard
             </h1>
             {admin && (
               <p className="text-sm text-gray-600 mt-1">
@@ -316,7 +322,7 @@ const AdminDashboard = () => {
                               <img
                                 src={f.imageUrl}
                                 alt="soil"
-                                className="w-20 h-12 object-cover rounded cursor-pointer hover:scale-105 transition"
+                                className="w-fit h-12 object-cover rounded cursor-pointer hover:scale-105 transition"
                               />
                             </a>
                           ) : (
@@ -338,8 +344,8 @@ const AdminDashboard = () => {
             </div>
 
             {/* Pagination */}
-            <div className="mt-6 flex items-center justify-between bg-white p-4 rounded-lg shadow">
-              <div className="text-sm text-gray-600">
+            <div className="mt-6 flex items-center justify-between bg-white p-4 rounded-lg shadow overflow-scroll">
+              <div className="text-sm text-gray-600 mr-4">
                 Showing {(page - 1) * limit + 1} to{" "}
                 {Math.min(page * limit, pagination.total)} of {pagination.total}{" "}
                 farmers
@@ -350,14 +356,14 @@ const AdminDashboard = () => {
                   onClick={() => setPage(1)}
                   className="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
-                  First
+                  <ChevronsLeft />
                 </button>
                 <button
                   disabled={page === 1}
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  className="px-4 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  className="px-2 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
-                  Previous
+                  <ChevronLeft />
                 </button>
                 <span className="px-4 py-1 bg-green-600 text-white rounded">
                   {page}
@@ -365,16 +371,16 @@ const AdminDashboard = () => {
                 <button
                   disabled={page >= pagination.pages}
                   onClick={() => setPage((p) => p + 1)}
-                  className="px-4 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  className="px-2 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
-                  Next
+                  <ChevronRight />
                 </button>
                 <button
                   disabled={page >= pagination.pages}
                   onClick={() => setPage(pagination.pages)}
                   className="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
-                  Last
+                  <ChevronsRight />
                 </button>
               </div>
             </div>

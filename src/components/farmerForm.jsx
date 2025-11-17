@@ -269,25 +269,122 @@ const FarmerForm = () => {
 
         {/* Image Upload */}
         <div>
-          <label
-            htmlFor="imageUpload"
-            className="block text-gray-700 font-medium"
-          >
+          <label className="block text-gray-700 font-medium mb-2">
             Upload Soil Image (Optional)
           </label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="w-full border rounded-lg p-2"
-            id="imageUpload"
-          />
-          {preview && (
-            <img
-              src={preview}
-              alt="Preview"
-              className="mt-2 rounded-lg w-full h-48 object-cover border-2 border-green-200"
-            />
+
+          {!preview ? (
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-500 transition cursor-pointer bg-gray-50">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+                id="file-upload"
+              />
+              <label htmlFor="file-upload" className="cursor-pointer">
+                <div className="flex flex-col items-center">
+                  <svg
+                    className="w-12 h-12 text-gray-400 mb-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    />
+                  </svg>
+                  <p className="text-sm text-gray-600 mb-1">
+                    <span className="font-semibold text-green-600">
+                      Click to upload
+                    </span>{" "}
+                    or drag and drop
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    PNG, JPG, JPEG up to 5MB
+                  </p>
+                </div>
+              </label>
+            </div>
+          ) : (
+            <div className="relative border-2 border-green-300 rounded-lg overflow-hidden">
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute top-2 right-2 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (preview) {
+                      URL.revokeObjectURL(preview);
+                    }
+                    setPreview(null);
+                    setImage(null);
+                  }}
+                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transition cursor-pointer"
+                  title="Remove image"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="bg-white p-3 border-t border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="w-5 h-5 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span className="text-sm text-gray-700 font-medium">
+                      {image?.name || "Image selected"}
+                    </span>
+                  </div>
+                  <label
+                    htmlFor="file-upload-change"
+                    className="text-sm text-red-600 hover:text-red-700 font-medium cursor-pointer"
+                  >
+                    Change
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                    id="file-upload-change"
+                  />
+                </div>
+                {image && (
+                  <p className="text-xs text-gray-500 mt-1">
+                    Size: {(image.size / 1024).toFixed(2)} KB
+                  </p>
+                )}
+              </div>
+            </div>
           )}
         </div>
 
