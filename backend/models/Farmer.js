@@ -9,6 +9,10 @@ const FarmerSchema = new mongoose.Schema({
   irrigation: { type: Boolean, default: false },
   imageUrl: { type: String },
   recommendedCrops: [{ type: String }],
+  //FIELDS for AI insights
+  aiReasoning: { type: String },
+  priorityCrop: { type: String },
+  farmingTips: [{ type: String }],
   createdAt: { type: Date, default: Date.now },
 });
 

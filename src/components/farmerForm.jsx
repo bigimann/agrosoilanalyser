@@ -17,6 +17,10 @@ const FarmerForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
+  const [reasoning, setReasoning] = useState(null);
+  const [priority, setPriority] = useState(null);
+  const [tips, setTips] = useState([]);
+  const [aiPowered, setAiPowered] = useState(false);
 
   // Clean up preview URL when component unmounts or preview changes
   useEffect(() => {
@@ -98,6 +102,10 @@ const FarmerForm = () => {
       if (res.data.success) {
         setRecommendation(res.data.data.recommendedCrops);
         setUploadedImageUrl(res.data.data.imageUrl);
+        setReasoning(res.data.data.reasoning);
+        setPriority(res.data.data.priority);
+        setTips(res.data.data.tips || []);
+        setAiPowered(res.data.data.aiPowered);
       } else {
         setError("Failed to analyze data");
       }
@@ -134,6 +142,10 @@ const FarmerForm = () => {
     }
     setPreview(null);
     setRecommendation(null);
+    setReasoning(null);
+    setPriority(null);
+    setTips([]);
+    setAiPowered(false);
     setError(null);
     setUploadedImageUrl(null);
   };
@@ -409,19 +421,81 @@ const FarmerForm = () => {
 
       {/* Recommendation Results */}
       {recommendation && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-300 rounded-xl">
-          <h3 className="text-lg font-semibold text-green-700">
-            ✅ Recommended Crops:
-          </h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2">
-            {recommendation.map((crop, index) => (
-              <li key={index} className="py-1">
-                {crop}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-6 space-y-4">
+          {/* AI Badge */}
+          {aiPowered && (
+            <div className="flex items-center justify-center gap-2 text-sm text-purple-600 bg-purple-50 p-2 rounded-lg">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 7H7v6h6V7z" />
+                <path
+                  fillRule="evenodd"
+                  d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="font-medium">AI-Powered Recommendations</span>
+            </div>
+          )}
+
+          {/* Priority Crop */}
+          {priority && (
+            <div className="p-4 bg-linear-to-r from-green-50 to-emerald-50 border-l-4 border-green-600 rounded-lg">
+              <h3 className="text-sm font-semibold text-green-700 mb-1">
+                🌟 Priority Crop
+              </h3>
+              <p className="text-lg font-bold text-green-800">{priority}</p>
+            </div>
+          )}
+
+          {/* Recommended Crops */}
+          <div className="p-4 bg-green-50 border border-green-300 rounded-xl">
+            <h3 className="text-lg font-semibold text-green-700 mb-3">
+              ✅ Recommended Crops
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {recommendation.map((crop, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-white border border-green-200 rounded-full text-green-700 text-sm font-medium"
+                >
+                  {crop}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* AI Reasoning */}
+          {reasoning && (
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <h3 className="text-sm font-semibold text-blue-700 mb-2">
+                💡 Why These Crops?
+              </h3>
+              <p className="text-sm text-gray-700">{reasoning}</p>
+            </div>
+          )}
+
+          {/* Farming Tips */}
+          {tips && tips.length > 0 && (
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <h3 className="text-sm font-semibold text-yellow-700 mb-2">
+                🌱 Farming Tips
+              </h3>
+              <ul className="space-y-1">
+                {tips.map((tip, index) => (
+                  <li
+                    key={index}
+                    className="text-sm text-gray-700 flex items-start gap-2"
+                  >
+                    <span className="text-yellow-600 mt-0.5">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {uploadedImageUrl && (
-            <div className="mt-3 pt-3 border-t border-green-200">
+            <div className="pt-3 border-t border-gray-200">
               <p className="text-sm text-gray-600">
                 ✓ Soil image uploaded successfully
               </p>

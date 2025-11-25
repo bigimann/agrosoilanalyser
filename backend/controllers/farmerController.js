@@ -1,39 +1,9 @@
 import fs from "fs";
 import Farmer from "../models/farmer.js";
 import cloudinary from "../config/cloudinary.js";
+import { getAICropRecommendations } from "../services/aiService.js";
 
-// AI crop recommendation logic
-const recommendCrops = (soilType, rainfall, ph) => {
-  const crops = [];
-
-  if (soilType === "loamy") {
-    crops.push("Maize", "Cassava", "Tomato");
-  }
-
-  if (soilType === "clay") {
-    crops.push("Rice", "Sugarcane");
-  }
-
-  if (soilType === "sandy") {
-    crops.push("Groundnut", "Watermelon", "Millet");
-  }
-
-  if (rainfall === "high") {
-    crops.push("Rice", "Yam");
-  }
-
-  if (ph && ph < 6) {
-    crops.push("Cassava", "Sweet Potato");
-  }
-
-  if (crops.length === 0) {
-    crops.push("No strong match — further testing needed");
-  }
-
-  return [...new Set(crops)];
-};
-
-// CREATE: Analyze and save farmer data
+// CREATE: Analyze and save farmer data with AI predictions
 export const analyzeFarmerData = async (req, res) => {
   try {
     const { name, location, soilType, phLevel, rainfallLevel, irrigation } =
@@ -98,12 +68,17 @@ export const analyzeFarmerData = async (req, res) => {
       }
     }
 
-    // Get crop recommendations
-    const recommendedCrops = recommendCrops(
+    // Get AI-powered crop recommendations
+    console.log("🤖 Getting AI predictions...");
+    const aiResult = await getAICropRecommendations({
       soilType,
       rainfallLevel,
-      parseFloat(phLevel)
-    );
+      phLevel: phLevel ? parseFloat(phLevel) : null,
+      location,
+      irrigation: irrigation === "true" || irrigation === true,
+    });
+
+    const recommendedCrops = aiResult.recommendations;
 
     // Save to database
     const farmer = new Farmer({
@@ -115,6 +90,9 @@ export const analyzeFarmerData = async (req, res) => {
       irrigation: irrigation === "true" || irrigation === true,
       imageUrl,
       recommendedCrops,
+      aiReasoning: aiResult.reasoning,
+      priorityCrop: aiResult.priority,
+      farmingTips: aiResult.tips,
     });
 
     await farmer.save();
@@ -125,6 +103,10 @@ export const analyzeFarmerData = async (req, res) => {
         id: farmer._id,
         imageUrl,
         recommendedCrops,
+        reasoning: aiResult.reasoning,
+        priority: aiResult.priority,
+        tips: aiResult.tips,
+        aiPowered: aiResult.success,
       },
       metadata: {
         name,
@@ -160,7 +142,6 @@ export const getAllFarmers = async (req, res) => {
     const limit = parseInt(req.query.limit) || 25;
     const skip = (page - 1) * limit;
 
-    // Build filter object
     const filter = {};
     if (req.query.soilType) {
       filter.soilType = req.query.soilType;
@@ -172,10 +153,8 @@ export const getAllFarmers = async (req, res) => {
       filter.rainfallLevel = req.query.rainfallLevel;
     }
 
-    // Get total count for pagination
     const total = await Farmer.countDocuments(filter);
 
-    // Get farmers with pagination
     const farmers = await Farmer.find(filter)
       .sort({ createdAt: -1 })
       .skip(skip)

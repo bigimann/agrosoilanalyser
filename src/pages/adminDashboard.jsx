@@ -344,7 +344,7 @@ const AdminDashboard = () => {
             </div>
 
             {/* Pagination */}
-            <div className="mt-6 flex items-center justify-between bg-white p-4 rounded-lg shadow overflow-scroll">
+            <div className="mt-6 flex items-center justify-between bg-white p-4 rounded-lg shadow overflow-x-auto">
               <div className="text-sm text-gray-600 mr-4">
                 Showing {(page - 1) * limit + 1} to{" "}
                 {Math.min(page * limit, pagination.total)} of {pagination.total}{" "}
