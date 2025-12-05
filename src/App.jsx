@@ -1,6 +1,6 @@
-import "./index.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import FarmerForm from "./components/farmerForm";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import MultiStepForm from "./pages/multiStepForm";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/adminDashboard";
@@ -10,7 +10,8 @@ function App() {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<FarmerForm />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/form" element={<MultiStepForm />} />
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin/register" element={<Register />} />
 
