@@ -39,11 +39,16 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-      });
+      const res = await axios.post(
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/auth/register`,
+        {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
 
       if (res.data.success) {
         // Store token and admin info

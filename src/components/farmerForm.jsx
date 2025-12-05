@@ -94,9 +94,15 @@ const FarmerForm = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/farmers", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/farmers`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       // Handle successful response
       if (res.data.success) {

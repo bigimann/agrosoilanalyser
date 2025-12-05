@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -52,7 +52,9 @@ const AdminDashboard = () => {
 
       const queryString = new URLSearchParams(params).toString();
       const res = await axios.get(
-        `http://localhost:5000/api/farmers?${queryString}`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/farmers?${queryString}`,
         getAuthHeader()
       );
 

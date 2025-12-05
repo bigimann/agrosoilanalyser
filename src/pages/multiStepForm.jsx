@@ -96,9 +96,15 @@ const MultiStepForm = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/farmers", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/farmers`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       if (res.data.success) {
         setRecommendation(res.data.data.recommendedCrops);
