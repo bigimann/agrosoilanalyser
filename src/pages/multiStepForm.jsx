@@ -694,7 +694,7 @@ const MultiStepForm = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-green-700 mb-2">
-              🌾 AgroSense-AI
+              🌾 AgroSoilAssistant
             </h1>
             <p className="text-gray-600">Get AI-powered crop recommendations</p>
           </div>

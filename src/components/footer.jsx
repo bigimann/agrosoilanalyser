@@ -3,7 +3,7 @@ export default function Footer() {
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-2xl font-bold mb-4">🌾 AgroSense-AI</h3>
+          <h3 className="text-2xl font-bold mb-4">🌾 AgroSoilAssistant</h3>
           <p className="text-gray-400">
             Empowering farmers with intelligent crop recommendations
           </p>
@@ -75,7 +75,8 @@ export default function Footer() {
       </div>
       <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
         <p>
-          &copy; {new Date().getFullYear()} AgroSense-AI. All rights reserved.
+          &copy; {new Date().getFullYear()} AgroSoilAssistant. All rights
+          reserved.
         </p>
       </div>
     </div>

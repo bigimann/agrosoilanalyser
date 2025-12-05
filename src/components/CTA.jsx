@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function CTA() {
+  const navigate = useNavigate();
+
   return (
     <div className="max-w-4xl mx-auto px-4 text-center">
       <h2 className="text-4xl font-bold text-white mb-4">

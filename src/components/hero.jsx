@@ -76,7 +76,7 @@ export default function Hero() {
                     Recommended Crops:
                   </div>
                   <div className="flex flex-wrap gap-1">
-                    {["Maize", "Cassava", "Rice"].map((crop) => (
+                    {["Maize", "Cassava", "Rice", "Carbage"].map((crop) => (
                       <span
                         key={crop}
                         className="bg-green-600 text-white text-xs px-2 py-1 rounded"

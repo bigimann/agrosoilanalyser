@@ -153,7 +153,7 @@ const FarmerForm = () => {
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-lg mt-8">
       <h2 className="text-2xl font-bold text-center text-green-700 mb-4">
-        AgroSense-AI Form
+        AgroSoilAssistant Form
       </h2>
 
       {/* Error Message */}

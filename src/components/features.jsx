@@ -3,7 +3,7 @@ export default function Features() {
     <div className="max-w-7xl mx-auto px-4">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Why Choose AgroSense-AI?
+          Why Choose AgroSoilAssistant?
         </h2>
         <p className="text-xl text-gray-600">
           Powerful features designed for modern farmers

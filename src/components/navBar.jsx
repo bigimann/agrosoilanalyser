@@ -37,7 +37,7 @@ export default function Navigation() {
               onClick={() => handleNavigation("/")}
               className="text-2xl font-bold text-green-700 hover:text-green-800 transition"
             >
-              🌾 AgroSense-AI
+              🌾 AgroSoilAssistant
             </button>
           </div>
 

@@ -12,7 +12,7 @@ const FAQ = () => {
     {
       question: "Is this service really free?",
       answer:
-        "Yes! AgroSense-AI is completely free for farmers. We believe every farmer deserves access to smart agricultural technology regardless of their financial situation.",
+        "Yes! AgroSoilAssistant is completely free for farmers. We believe every farmer deserves access to smart agricultural technology regardless of their financial situation.",
     },
     {
       question: "What if I don't know my soil pH level?",
@@ -22,7 +22,7 @@ const FAQ = () => {
     {
       question: "Can I use this for large-scale commercial farming?",
       answer:
-        "Absolutely! AgroSense-AI works for farms of all sizes, from small family farms to large commercial operations. The recommendations are scalable and applicable to various farm sizes.",
+        "Absolutely! AgroSoilAssistant works for farms of all sizes, from small family farms to large commercial operations. The recommendations are scalable and applicable to various farm sizes.",
     },
     {
       question: "How often should I submit new data?",
@@ -30,7 +30,7 @@ const FAQ = () => {
         "We recommend submitting new data at the beginning of each planting season or whenever your farm conditions change significantly (like after irrigation installation or major soil amendments).",
     },
     {
-      question: "What regions does AgroSense-AI support?",
+      question: "What regions does AgroSoilAssistant support?",
       answer:
         "Currently, we focus on African agriculture, particularly Nigeria. However, our AI can provide recommendations for farms in similar climatic regions. We're continuously expanding our coverage.",
     },

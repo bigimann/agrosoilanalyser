@@ -17,7 +17,7 @@ export default function Testimonial() {
             location: "Kaduna, Nigeria",
             image: "👨‍🌾",
             quote:
-              "AgroSense-AI helped me choose the right crops for my soil. My yield increased by 40% this season!",
+              "AgroSoilAssistant helped me choose the right crops for my soil. My yield increased by 40% this season!",
           },
           {
             name: "Fatima Ibrahim",

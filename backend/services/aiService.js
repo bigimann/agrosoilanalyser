@@ -10,7 +10,7 @@ export const getAICropRecommendations = async (farmerData) => {
       farmerData;
 
     // Build context-rich prompt
-    const prompt = `You are an expert agricultural advisor specializing in crop recommendations for farmers in Africa, particularly Nigeria.
+    const prompt = `You are an expert agricultural advisor specializing in crop recommendations for farmers in Africa, particularly Nigeria, who also has access to agricultural data on the internet for accurate prediction.
 
 Analyze the following farm data and provide intelligent crop recommendations:
 
