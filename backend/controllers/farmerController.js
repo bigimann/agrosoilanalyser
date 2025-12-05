@@ -1,5 +1,5 @@
 import fs from "fs";
-import Farmer from "../models/farmer.js";
+import Farmer from "../models/Farmer.js";
 import cloudinary from "../config/cloudinary.js";
 import { getAICropRecommendations } from "../services/aiService.js";
 
