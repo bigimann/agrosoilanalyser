@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const res = await axios.post(
         `${
-          process.env.VITE_REACT_APP_API_URL || "http://localhost:5000"
+          import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000"
         }/api/auth/login`,
         formData
       );

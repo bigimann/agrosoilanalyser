@@ -98,7 +98,7 @@ const MultiStepForm = () => {
     try {
       const res = await axios.post(
         `${
-          process.env.VITE_REACT_APP_API_URL || "http://localhost:5000"
+          import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000"
         }/api/farmers`,
         data,
         {
@@ -191,10 +191,14 @@ const MultiStepForm = () => {
               Personal Information
             </h2>
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
+              <label
+                htmlFor="name"
+                className="block text-gray-700 font-medium mb-2"
+              >
                 Farmer Name <span className="text-red-500">*</span>
               </label>
               <input
+                id="name"
                 type="text"
                 name="name"
                 value={formData.name}
@@ -202,13 +206,18 @@ const MultiStepForm = () => {
                 required
                 className="w-full border-2 rounded-lg p-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
                 placeholder="Enter your full name"
+                autoComplete="on"
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
+              <label
+                htmlFor="location"
+                className="block text-gray-700 font-medium mb-2"
+              >
                 Farm Location <span className="text-red-500">*</span>
               </label>
               <input
+                id="location"
                 type="text"
                 name="location"
                 value={formData.location}
@@ -231,7 +240,10 @@ const MultiStepForm = () => {
               Soil Details
             </h2>
             <div>
-              <label className="block text-gray-700 font-medium mb-3">
+              <label
+                htmlFor="soilType"
+                className="block text-gray-700 font-medium mb-3"
+              >
                 Soil Type <span className="text-red-500">*</span>
               </label>
               <div className="grid grid-cols-2 gap-4">
@@ -262,6 +274,7 @@ const MultiStepForm = () => {
                   },
                 ].map((soil) => (
                   <label
+                    htmlFor="soilType"
                     key={soil.value}
                     className={`border-2 rounded-lg p-4 cursor-pointer transition ${
                       formData.soilType === soil.value
@@ -270,6 +283,7 @@ const MultiStepForm = () => {
                     }`}
                   >
                     <input
+                      id="soilType"
                       type="radio"
                       name="soilType"
                       value={soil.value}
@@ -285,10 +299,14 @@ const MultiStepForm = () => {
               </div>
             </div>
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
+              <label
+                htmlFor="pHLevel"
+                className="block text-gray-700 font-medium mb-2"
+              >
                 Soil pH Level (Optional)
               </label>
               <input
+                id="pHLevel"
                 type="number"
                 step="0.1"
                 min="0"
@@ -317,7 +335,10 @@ const MultiStepForm = () => {
               Climate Information
             </h2>
             <div>
-              <label className="block text-gray-700 font-medium mb-3">
+              <label
+                htmlFor="rainfallLevel"
+                className="block text-gray-700 font-medium mb-3"
+              >
                 Rainfall Level <span className="text-red-500">*</span>
               </label>
               <div className="space-y-3">
@@ -342,6 +363,7 @@ const MultiStepForm = () => {
                   },
                 ].map((rainfall) => (
                   <label
+                    htmlFor="rainfallLevel"
                     key={rainfall.value}
                     className={`flex items-center border-2 rounded-lg p-4 cursor-pointer transition ${
                       formData.rainfallLevel === rainfall.value
@@ -350,6 +372,7 @@ const MultiStepForm = () => {
                     }`}
                   >
                     <input
+                      id="rainfallLevel"
                       type="radio"
                       name="rainfallLevel"
                       value={rainfall.value}
@@ -384,8 +407,12 @@ const MultiStepForm = () => {
               </div>
             </div>
             <div className="border-2 border-gray-200 rounded-lg p-4">
-              <label className="flex items-center cursor-pointer">
+              <label
+                htmlFor="irrigation"
+                className="flex items-center cursor-pointer"
+              >
                 <input
+                  id="irrigation"
                   type="checkbox"
                   name="irrigation"
                   checked={formData.irrigation}
@@ -455,7 +482,10 @@ const MultiStepForm = () => {
 
             {/* Image Upload */}
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
+              <label
+                htmlFor="file-upload"
+                className="block text-gray-700 font-medium mb-2"
+              >
                 Upload Soil Image (Optional)
               </label>
 
@@ -580,7 +610,7 @@ const MultiStepForm = () => {
         return (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <div className="text-6xl mb-4">🎉</div>
+              <div className="text-3xl mb-4">🎉</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 Analysis Complete!
               </h2>
@@ -594,16 +624,12 @@ const MultiStepForm = () => {
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M13 7H7v6h6V7z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z"
-                    clipRule="evenodd"
-                  />
+                  <path d="M12 2C13.5 8 16 10.5 22 12C16 13.5 13.5 16 12 22C10.5 16 8 13.5 2 12C8 10.5 10.5 8 12 2Z" />
                 </svg>
-                <span className="font-semibold">Powered by Claude AI</span>
+                <span className="font-semibold">Powered by Gemini AI</span>
               </div>
             )}
 

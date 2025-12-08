@@ -1,7 +1,7 @@
 import fs from "fs";
 import Farmer from "../models/Farmer.js";
 import cloudinary from "../config/cloudinary.js";
-import { getAICropRecommendations } from "../services/aiService.js";
+import { getAICropRecommendations } from "../services/geminiService.js";
 
 // CREATE: Analyze and save farmer data with AI predictions
 export const analyzeFarmerData = async (req, res) => {
@@ -68,8 +68,8 @@ export const analyzeFarmerData = async (req, res) => {
       }
     }
 
-    // Get AI-powered crop recommendations
-    console.log("🤖 Getting AI predictions...");
+    // Get Gemini AI crop recommendations
+    console.log("🤖 Getting Gemini AI predictions...");
     const aiResult = await getAICropRecommendations({
       soilType,
       rainfallLevel,

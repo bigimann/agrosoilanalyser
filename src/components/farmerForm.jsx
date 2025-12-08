@@ -96,7 +96,7 @@ const FarmerForm = () => {
       setLoading(true);
       const res = await axios.post(
         `${
-          process.env.REACT_APP_API_URL || "http://localhost:5000"
+          import.meta.env.REACT_APP_API_URL || "http://localhost:5000"
         }/api/farmers`,
         data,
         {

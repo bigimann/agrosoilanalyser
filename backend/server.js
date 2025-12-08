@@ -9,6 +9,7 @@ import { promises as fsPromises } from "fs";
 import mongoose from "mongoose";
 import farmerRoute from "./routes/farmerRoute.js";
 import authRoute from "./routes/authRoute.js";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 
@@ -23,6 +24,13 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
+app.use("/api/", limiter);
+
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -34,8 +42,6 @@ const uploadDir = "./uploads";
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
-
-console.log("Cloudinary key:", process.env.CLOUDINARY_API_KEY);
 
 // Cleanup on startup
 const cleanupUploads = async () => {
