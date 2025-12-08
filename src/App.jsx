@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/landingPage";
 import MultiStepForm from "./pages/multiStepForm";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Register from "./pages/register";
 import AdminDashboard from "./pages/adminDashboard";
 import ProtectedRoute from "./components/protectedRoute";
