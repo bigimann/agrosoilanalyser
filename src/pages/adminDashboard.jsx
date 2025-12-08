@@ -53,7 +53,7 @@ const AdminDashboard = () => {
       const queryString = new URLSearchParams(params).toString();
       const res = await axios.get(
         `${
-          process.env.REACT_APP_API_URL || "http://localhost:5000"
+          process.env.VITE_REACT_APP_API_URL || "http://localhost:5000"
         }/api/farmers?${queryString}`,
         getAuthHeader()
       );
