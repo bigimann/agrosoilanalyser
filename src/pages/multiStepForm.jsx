@@ -274,7 +274,6 @@ const MultiStepForm = () => {
                   },
                 ].map((soil) => (
                   <label
-                    htmlFor="soilType"
                     key={soil.value}
                     className={`border-2 rounded-lg p-4 cursor-pointer transition ${
                       formData.soilType === soil.value
@@ -363,7 +362,6 @@ const MultiStepForm = () => {
                   },
                 ].map((rainfall) => (
                   <label
-                    htmlFor="rainfallLevel"
                     key={rainfall.value}
                     className={`flex items-center border-2 rounded-lg p-4 cursor-pointer transition ${
                       formData.rainfallLevel === rainfall.value
