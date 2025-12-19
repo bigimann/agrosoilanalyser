@@ -7,10 +7,17 @@ import Hero from "../components/hero";
 import Features from "../components/features";
 import UseCase from "../components/useCase";
 import Testimonial from "../components/testimonial";
+import SEO from "../components/SEO";
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-green-50 via-white to-emerald-50">
+      <SEO
+        title="Agro Soil Assistant - Home"
+        description="Get instant AI-powered crop recommendations for your farm"
+        url="https://agrosoilassistant.vercel.app/"
+      />
+
       {/* Navigation */}
       <nav className="bg-white shadow-sm sticky top-0 z-50">
         <Navigation />

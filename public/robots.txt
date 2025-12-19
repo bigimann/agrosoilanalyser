@@ -1,0 +1,24 @@
+# Robots.txt
+User-agent: *
+Allow: /
+Allow: /form
+Allow: /admin/login
+Allow: /admin/register
+Disallow: /admin/dashboard
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://agrosoilassistant.vercel.app/sitemap.xml
+
+# Crawl delay (optional - prevents aggressive crawling)
+Crawl-delay: 1
+
+# Search Engine Specific Rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SEO from "../components/SEO";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -721,6 +722,11 @@ const MultiStepForm = () => {
     <div className="min-h-screen bg-linear-to-br from-green-50 to-emerald-50 py-12 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
+          <SEO
+            title="Agro Soil Assistant - Crop Recommendation Form"
+            description="Enter your farm details to get AI-powered crop recommendations"
+            url="https://agrosoilassistant.vercel.app/form"
+          />
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-green-700 mb-2">
