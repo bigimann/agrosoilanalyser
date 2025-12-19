@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://agrosoilassistant.vercel.app/</loc>
-    <lastmod>2025-12-17</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- Form Page -->
   <url>
     <loc>https://agrosoilassistant.vercel.app/form</loc>
-    <lastmod>2025-12-17</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- Admin Login -->
   <url>
     <loc>https://agrosoilassistant.vercel.app/admin/login</loc>
-    <lastmod>2025-12-17</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- Admin Register -->
   <url>
     <loc>https://agrosoilassistant.vercel.app/admin/register</loc>
-    <lastmod>2025-12-17</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
