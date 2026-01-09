@@ -3,7 +3,7 @@ import path from "path";
 
 const baseUrl = "https://agrosoilassistant.vercel.app";
 
-const routes = ["/", "/form", "/admin/login", "/admin/register"];
+const routes = ["/"];
 
 const urls = routes
   .map(
